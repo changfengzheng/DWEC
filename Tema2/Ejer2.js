@@ -13,7 +13,7 @@ console.log("Se han escrito las potencias de 2 menores de 1000");
 let aux2 = 1;
 let x = 2;
 
-while(x <= 1000){
+while (x <= 1000) {
     console.log("2 elevado a " + aux2 + " es igual a " + x);
     x *= 2
     aux2++;
@@ -22,5 +22,13 @@ console.log("Se han escrito las potencias de 2 menores de 1000");
 
 /*Utilizado do while */
 
+let aux3 = 1;
+let y = 2;
 
+do {
+    console.log("2 elevado a " + aux3 + " es igual a " + y);
+    y *= 2
+    aux3++;
+} while (y <= 1000)
+console.log("Se han escrito las potencias de 2 menores de 1000");
 
