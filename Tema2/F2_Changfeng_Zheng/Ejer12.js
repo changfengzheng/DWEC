@@ -2,14 +2,10 @@
 en el rango 50..99 (inclusive). Devuelve verdadero si alguno de ellos está en dicho
 rango */
 
-function check_numbers(x, y) {
-    //
-    if ((x >= 50 && x <= 99) || (y >= 50 && y <= 99)) {
-        return true;
-    }else {
-        return false;
-    }
-}
+const comprobar_num = (num1, num2) => {
+    return ((num1 >= 50 && num1 <= 99) &&
+        (num2 >= 50 && num2 <= 99)) ? true : false
 
-document.write(check_numbers(50, 50), "<br>");
-document.write(check_numbers(10, 25));
+}
+document.write(comprobar_num(50, 50), "<br>");
+document.write(comprobar_num(10, 25));

@@ -2,13 +2,11 @@
 número especificado y 19. Devuelve el triple de su diferencia absoluta si el número
 especificado es mayor que 19. */
 
-function num_diff(n) {
-    if (n <= 19) {
-        return (19 - n);
+const num_diff = (a) => {
+    if ((a - 19) > 19) {
+        return (a - 19) * 3;
     }
-    else {
-        return (n - 19) * 3;
-    }
+    return 19 - a;
 }
 
 document.write(num_diff(50), "<br>");
