@@ -1,4 +1,4 @@
-/**Escriba un programa JavaScript para calcular la multiplicación y división de dos
+/** 10.Escriba un programa JavaScript para calcular la multiplicación y división de dos
 números (entrada del usuario). */
 
 let num1;

@@ -1,4 +1,4 @@
-/**Escriba un programa JavaScript para calcular los días que quedan hasta la
+/**9. Escriba un programa JavaScript para calcular los días que quedan hasta la
 próxima Navidad. */
 
 let now = new Date();
