@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+
+<body>
+    <p>Calculadora simple:</p>
+    <table border="1" style="position:center;">
+        <tr>
+            <td>Numero 1：</td>
+            <td><input type="text" id="num1" /></td>
+        </tr>
+        <tr>
+            <td>Numero 2：</td>
+            <td><input type="text" id="num2" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                &nbsp;
+                <button style="width:inherit" onclick="add()">+</button>
+                &nbsp;
+                <button style="width:inherit" onclick="subtract()">-</button>
+                &nbsp;
+                <button style="width:inherit" onclick="ride()">*</button>
+                &nbsp;
+                <button style="width:inherit" onclick="devide()">/</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="2">
+                <p id="result"></p>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        var result_1;
+        //Suma
+        function add() {
+            var a = getnum1Number();
+            var b = getnum2Number();
+            var re = Number(a) + Number(b);
+            sendResult(re);
+        }
+
+        //Resta
+        function subtract() {
+            var a = getnum1Number();
+            var b = getnum2Number();
+            var re = a - b;
+            sendResult(re);
+        }
+
+        //Multiplicacion
+        function ride() {
+            var a = getnum1Number();
+            var b = getnum2Number();
+            var re = a * b;
+            sendResult(re);
+        }
+
+        //Divicion 
+        function devide() {
+            var a = getnum1Number();
+            var b = getnum2Number();
+            var re = a / b;
+            sendResult(re);
+        }
+
+        //Mostrar resultado
+        function sendResult(result_1) {
+            var num = document.getElementById("result")
+            num.innerHTML = result_1;
+        }
+
+        //Obetener el primero numero
+        function getnum1Number() {
+            var num1Number = document.getElementById("num1").value;
+            return num1Number;
+        }
+
+        //Obetener el segundo numero
+        function getnum2Number() {
+            var num2Number = document.getElementById("num2").value;
+            return num2Number;
+        }
+    </script>
+</body>
+
+</html>

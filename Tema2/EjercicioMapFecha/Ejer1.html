@@ -1,0 +1,23 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <!--1. Definir una función de flecha que reciba un valor entero y retorne otro valor entero aleatorio
+comprendido entre 1 y el valor que llega como parámetro. Asignar dicha función de flecha a una
+constante para permitir llamarla en sucesivas ocasiones.
+ -->
+    <script>
+        const aleatorio = valor => Math.trunc(Math.random() * valor) + 1;
+        document.write(aleatorio(5), "<br>");
+        document.write(aleatorio(20), "<br>");
+        document.write(aleatorio(50), "<br>");
+    </script>
+</body>
+
+</html>
