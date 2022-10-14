@@ -19,6 +19,10 @@
             <td><input type="text" id="num2" /></td>
         </tr>
         <tr>
+            <td>Numero a convertir：</td>
+            <td><input type="text" id="num3" /></td>
+        </tr>
+        <tr>
             <td colspan="2">
                 &nbsp;
                 <button style="width:inherit" onclick="sumar(getNum1(), getNum2())">+</button>
@@ -28,6 +32,10 @@
                 <button style="width:inherit" onclick="multiplicar(getNum1(), getNum2())">*</button>
                 &nbsp;
                 <button style="width:inherit" onclick="dividir(getNum1(), getNum2())">/</button>
+                &nbsp;
+                <button style="width:inherit" onclick="numBinario(getNum3())">Convertir a binario</button>
+                &nbsp;
+                <button style="width:inherit" onclick="binNumero(getNum3())">Convertir a numero</button>
             </td>
         </tr>
         <tr>
@@ -59,6 +67,32 @@
             sendResult(a / b);
         }
 
+        //Convertir numero a Binario
+        let numBinario = (a) => {
+            let num = a;
+            let binario = (num % 2).toString();
+            for (; num > 1;) {
+                num = parseInt(num / 2);
+                binario = (num % 2) + (binario);
+            };
+            sendResult(binario);
+        }
+
+        //Convertir binario a Numero
+        let binNumero = (a) => {
+            let num = a;
+            let decimal = 0;
+            let base = 1;
+            let temp = num;
+            while (temp) {
+                let last_digit = temp % 10;
+                temp = Math.floor(temp / 10);
+                decimal += last_digit * base;
+                base = base * 2;
+            }
+            sendResult(decimal);
+        }
+
         //Mostrar resultado
         let sendResult = (result_1) => {
             document.getElementById("result").innerHTML = result_1;
@@ -72,6 +106,11 @@
         //Obetener el segundo numero
         function getNum2() {
             return document.getElementById("num2").value;
+        }
+
+        //Obetener el 3 numero
+        function getNum3() {
+            return document.getElementById("num3").value;
         }
 
     </script>
