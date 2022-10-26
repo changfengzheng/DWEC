@@ -1,9 +1,20 @@
-/**16. Escriba un programa JavaScript para calcular la suma de los dos números
-enteros dados. Si los dos valores son iguales, devuelve el triple de su suma. */
+/**9. Escriba un programa JavaScript para calcular los días que quedan hasta la
+próxima Navidad. */
 
-const sumTriple = (num1, num2) => {
-    return num1 === num2 ? 3 * (num1 + num2) : num1 + num2;
-};
+let now = new Date();
 
-document.write(sumTriple(6, 6), "<br>");
-document.write(sumTriple(10, 20));
+let navidad = new Date();
+navidad.setMonth(11);
+navidad.setDate(24);
+
+let year = now.getFullYear();
+let diff = navidad - now;
+let time;
+
+if (diff < 0) {
+    navidad.setFullYear(year + 1);
+    diff = navidad - now;
+}
+
+time = Math.ceil(1.0 * diff / (1000 * 3600 * 24));
+document.write("Queda " + time + " dias para la proxima navidad");

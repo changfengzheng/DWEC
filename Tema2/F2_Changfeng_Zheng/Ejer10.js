@@ -1,14 +1,12 @@
-/**17. Escriba un programa JavaScript para calcular la diferencia absoluta entre un
-número especificado y 19. Devuelve el triple de su diferencia absoluta si el número
-especificado es mayor que 19. */
+/** 10.Escriba un programa JavaScript para calcular la multiplicación y división de dos
+números (entrada del usuario). */
 
-const num_diff = (a) => {
-    if ((a - 19) > 19) {
-        return (a - 19) * 3;
-    }
-    return 19 - a;
-}
+let num1;
+let num2;
 
-document.write(num_diff(50), "<br>");
-document.write(num_diff(19), "<br>");
-document.write(num_diff(7));
+num1 = parseInt(prompt("Ingrese primer el numero"));
+num2 = parseInt(prompt("Ingrese segunda el numero"));
+
+
+document.write(num1 * num2), "<br>";
+document.write(num1 / num2);

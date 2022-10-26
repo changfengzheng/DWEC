@@ -1,9 +1,25 @@
-/**18. Escriba un programa JavaScript para verificar dos números dados y devolver
-verdadero si uno de los números es 50 o si su suma es 50 */
+/**11. Escriba un programa JavaScript para convertir temperaturas desde y hacia
+Celsius, fare.
+[Fórmula: c / 5 = (f-32) / 9 [donde c = temperatura en Celsius yf = temperatura en
+fare]
+Salida esperada :
+60 ° C es 140 ° F
+45 ° F es 7.222222222222222 ° C */
 
-const true_false = (num1, num2) => {
-    return num1 + num2 === 50 || num1 === 50 || num2 === 50 ? true : false;
+let centi;
+let fare;
+
+const celToFahr = (c) => {
+    centi = c;
+    fare = c * 1.8 + 32;
+    document.write(centi + " ° C es " + fare + " ° F", "<br>");
 };
-document.write(true_false(50, 50), "<br>")
-document.write(true_false(20, 20), "<br>")
-document.write(true_false(20, 30))
+
+const fahrToCel = (f) => {
+    fare = f;
+    centi = (f - 32) / 1.8;
+    document.write(fare + " ° F es " + centi + " ° C ");
+};
+
+celToFahr(60);
+fahrToCel(45);
