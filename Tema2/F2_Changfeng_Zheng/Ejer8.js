@@ -14,3 +14,4 @@ if (numero == aleatorio) {
 }else{
     document.write("No coincide");
 }
+Moodle
