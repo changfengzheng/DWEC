@@ -61,12 +61,12 @@ class Habitaciones {
     }
 
     //Cambiar de habitacion
-    cambiarHab(alumno, habOriginal, habDestino) {
-        let tmp = habOriginal.alumnos.indexOf(alumno);
-        let alumnoACambiar = habDestino.alumnos[tmp];
+    cambiarHab(alumno, origen, destino) {
+        let tmp = origen.alumnos.indexOf(alumno);
+        let cambiar = destino.alumnos[tmp];
 
-        habDestino.alumnos[tmp] = habOriginal.alumnos[tmp];
-        habOriginal.alumnos[tmp] = alumnoACambiar;
+        destino.alumnos[tmp] = origen.alumnos[tmp];
+        origen.alumnos[tmp] = cambiar;
     }
 }
 
