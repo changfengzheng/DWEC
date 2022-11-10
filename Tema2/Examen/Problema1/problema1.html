@@ -1,0 +1,86 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+
+<body>
+    <p>Poblema 1:</p>
+    <table border="1" style="position:center;">
+        <tr>
+            <td>Numero 1：</td>
+            <td><input type="text" id="num1" /></td>
+        </tr>
+        <tr>
+            <td>Numero 2：</td>
+            <td><input type="text" id="num2" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                &nbsp;
+                <button style="width:inherit" onclick="sumar(getNum1(), getNum2())">+</button>
+                &nbsp;
+                <button style="width:inherit" onclick="restar(getNum1(), getNum2())">-</button>
+                &nbsp;
+                <button style="width:inherit" onclick="multiplicar(getNum1(), getNum2())">*</button>
+                &nbsp;
+                <button style="width:inherit" onclick="dividir(getNum1(), getNum2())">/</button>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="2">
+                <p id="result"></p>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        var result_1;
+        //Suma
+        let sumar = (a, b) => {
+            sendResult(Number(a) + Number(b));
+        }
+
+        //Resta
+        let restar = (a, b) => {
+            sendResult(a - b);
+        }
+
+        //Multiplicacion
+        let multiplicar = (a, b) => {
+            sendResult(("i").repeat(a).repeat(b).length);
+        }
+
+
+        //Divicion 
+        let dividir = (a, b) => {
+            let result = 0;
+            while (a >= b) {
+                a -= b;
+                result += 1;
+            }
+            sendResult(result);
+        }
+
+
+        //Mostrar resultado
+        let sendResult = (result_1) => {
+            document.getElementById("result").innerHTML = result_1;
+        }
+
+        //Obetener el primero numero
+        function getNum1() {
+            return document.getElementById("num1").value;
+        }
+
+        //Obetener el segundo numero
+        function getNum2() {
+            return document.getElementById("num2").value;
+        }
+
+    </script>
+</body>
+
+</html>
