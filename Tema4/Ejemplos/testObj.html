@@ -1,0 +1,23 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="cont" style="width:150px; height:60px; border:thin solid
+silver" onmouseover=this.style.borderColor='black' ; " onmouseout=" this.style.borderColor='red' ;">
+        Contenidos
+    </div>
+    <script>
+        function mostrarMensaje() {
+            alert("Hola");
+        }
+        document.getElementById("miObjeto").onclick = mostrarMensaje;
+    </script>
+</body>
+
+</html>

@@ -10,7 +10,7 @@ insertar = resultado => {
         posicion = 0;
     }
 
-    //si no se ha definido cadena a insertar, no insesrtamos nada
+    //si no se ha definido cadena a insertar, no insertamos nada
     if (cadenaInsertar == undefined) {
         cadenaInsertar = "";
     }

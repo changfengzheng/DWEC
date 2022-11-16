@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test DOM</title>
+</head>
+
+<body>
+    <h1>Favorite TV shows</h1>
+    <ul class="list">
+        <li>Golden Girls</li>
+        <li>Archer</li>
+        <li>Rick and Morty</li>
+        <li>The Crown</li>
+    </ul>
+
+    <h1>Reasons why I Love freeCodeCamp:</h1>
+
+
+    <script>
+        const listaDeElementos = document.querySelectorAll("ul > li");
+
+        listaDeElementos.forEach((item) => {
+            console.log(item);
+        });
+        
+        let listSinOrden = document.createElement("ul");
+        document.body.appendChild(listaSinOrden);
+
+        let elemento1Lista = document.createElement("li");
+        elemento1Lista.textContent = "It's Free";
+        listaSinOrden.appendChild(elemento1Lista);
+
+        let elemento2Lista = document.createElement("li");
+        elemento2Lista.textContent = "It's Awesome";
+        listaSinOrden.appendChild(elemento2Lista);
+    </script>
+</body>
+
+</html>
