@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Site</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="app.js"></script>
+</head>
+
+<body">
+    <div class="row">
+        <div class="col-8 m-auto pt-5">
+            <form class="row g-3">
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" required>
+                    <span class="text-danger font-weight-bold" id="nombreValide"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <span class="text-danger font-weight-bold" id="emailValide"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" required>
+                    <span class="text-danger font-weight-bold" id="passValide"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="password2" class="form-label">Repita la contraseña</label>
+                    <input type="password" class="form-control" id="password2" required>
+                    <span class="text-danger font-weight-bold" id="passRepetValide"></span>
+                </div>
+
+                <div class="col-md-2">
+                    <label for="math-operation" class="form-label">Cuanto es <span id="suma"></span></label>
+                </div>
+
+                <div class="col-md-10">
+                    <input type="number" class="form-control" id="math-operation" required>
+                    <span class="text-danger font-weight-bold" id="sumValide"></span>
+                </div>
+
+                <div class="col-md-12">
+                    <input type="checkbox" id="condiciones" name="condiciones" required>
+                    <label for="condiciones">Acepto las condiciones</label>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" id="enviar" disabled>Crear cuenta</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // Obtener elementos del HTML
+        const checkbox = document.getElementById('condiciones');
+        const submit = document.getElementById('enviar');
+
+        // Escuchar evento click en la casilla de verificación
+        checkbox.addEventListener('click', function () {
+            // Verificar si la casilla está seleccionada o no
+            if (checkbox.checked) {
+                // Si está seleccionada, habilitar el botón de envío
+                submit.disabled = false;
+            } else {
+                // Si no está seleccionada, deshabilitar el botón de envío
+                submit.disabled = true;
+            }
+        });
+    </script>
+</body>
+
+</html>
