@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>Ejercicio 4</title>
+</head>
+
+<body>
+    <div>
+        <p>
+            Parrafo 1
+            <a href="#" onclick="muestraOculta('parrafo1');">Ocultar contenido</a>
+        </p>
+        <p id="parrafo1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, eos. Quasi hic aliquid, porro recusandae
+            aspernatur a atque, vitae animi repellendus expedita, perspiciatis et? Deleniti sequi veniam neque obcaecati
+            esse!1 </p>
+    </div>
+
+    <div>
+        <p>
+            Parrafo 2
+            <a href="#" onclick="muestraOculta('parrafo2');">Ocultar contenido</a>
+        </p>
+        <p id="parrafo2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, eos. Quasi hic aliquid, porro recusandae
+            aspernatur a atque, vitae animi repellendus expedita, perspiciatis et? Deleniti sequi veniam neque obcaecati
+            esse!2 </p>
+    </div>
+    <div>
+        <p>
+            Parrafo 3
+            <a href="#" onclick="muestraOculta('parrafo3');">Ocultar contenido</a>
+        </p>
+        <p id="parrafo3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, eos. Quasi hic aliquid, porro recusandae
+            aspernatur a atque, vitae animi repellendus expedita, perspiciatis et? Deleniti sequi veniam neque obcaecati
+            esse!3 </p>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function muestraOculta(idParrafo) {
+
+        var parrafo = document.getElementById(idParrafo);
+
+        if (parrafo.style.display == 'none') {
+            parrafo.style.display = 'block';
+            parrafo.parentNode.querySelector('a').innerHTML = 'Ocultar contenido';
+        }
+        else {
+            parrafo.style.display = 'none';
+            parrafo.parentNode.querySelector('a').innerHTML = 'Mostrar contenido';
+        }
+    }
+</script>
