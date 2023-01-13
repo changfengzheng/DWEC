@@ -1,0 +1,71 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+    <script>
+        // Obtener el valor de la cookie
+        function obtenerCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+
+        // Establecer el valor de la cookie
+        function setCookie(name, value) {
+            var date = new Date();
+            date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 días
+            var expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        // Incrementar el valor de la cookie
+        function incrementarVisita() {
+            var visitas = obtenerCookie("visitas");
+            if (visitas) {
+                visitas = parseInt(visitas) + 1;
+            } else {
+                visitas = 1;
+            }
+            setCookie("visitas", visitas);
+            return visitas;
+        }
+
+        // Mostrar el valor de la cookie en la página
+        function mostrarVisita() {
+            var visitas = incrementarVisita();
+            document.getElementById("visitas").innerHTML = visitas;
+        }
+
+        // Eliminar la cookie
+        function borrarCookie() {
+            setCookie("visitas", "", -1);
+            document.getElementById("visitas").innerHTML = 0;
+        }
+    </script>
+</head>
+
+<body onload="mostrarVisita()">
+
+    <h1>Ejercicio 2</h1>
+
+    <h4>Realiza una Web que almacene en una cookie el número de visitas que has
+        realizado, incrementado el valor del número de visitas a cada visita realizada.
+        La web debe tener una interfaz para visualizar el contenido de la cookie y para
+        eliminar la cookie. ¿Sería más sencillo y potente hacerlo con localStorage?</h4>
+
+    <p>Las cookies y el LocalStorage son opciones para almacenar y recuperar información en el cliente, el LocalStorage
+        tiene mayor capacidad y una API más sencilla, pero los datos solo pueden ser accedidos desde javascript y no son
+        enviados automáticamente al servidor. mientras que las cookies si se envían automáticamente.
+        <br>
+        <br>
+        En conlusion, es sencillo y potente pero tiene sus desvetajas.
+    </p>
+
+    <p>Has visitado a este pagina <span id="visitas"></span> veces.</p>
+    <button onclick="borrarCookie()">Borrar Cookie</button>
+</body>
+
+</html>

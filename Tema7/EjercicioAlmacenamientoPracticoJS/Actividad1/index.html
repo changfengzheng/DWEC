@@ -1,0 +1,27 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <h2>Ejercicio 2</h2>
+    <h4>Medita si usando Javascript en una página remota (por ejemplo mediante un
+        fallo de seguridad XSS https://es.wikipedia.org/wiki/Cross-site_scripting ) y las
+        funciones de acceso a cookies/LocalStorage, se podría robar información de
+        cookies/LocalStorage por parte de un tercero. ¿Cómo podría hacerse?</h4>
+
+    <p>Si, un atacante podría robar información de las cookies y LocalStorage mediante una inyección de código malicioso
+        en una página web visitada, utilizando funciones de JavaScript para acceder y enviar la información robada a un
+        servidor controlado por el atacante.</p>
+    <ul>
+        <li>Para robar información de las cookies, el atacante podría utilizar la función document.cookie</li>
+        <li>Para robar información del LocalStorage, el atacante podría utilizar las funciones localStorage.getItem() y
+            localStorage.key()</li>
+    </ul>
+</body>
+
+</html>

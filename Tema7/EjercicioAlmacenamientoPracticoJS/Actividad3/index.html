@@ -1,0 +1,50 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <script>
+        // Obtener el valor de la visita del LocalStorage
+        function obtenerVisitas() {
+            var visitas = localStorage.getItem("visitas");
+            if (visitas) {
+                return JSON.parse(visitas);
+            } else {
+                return { "visitas": 0 };
+            }
+        }
+
+        // Incrementar el valor de las visitas y guardarlas en LocalStorage
+        function incrementarVisitas() {
+            var visitas = obtenerVisitas();
+            visitas.visitas += 1;
+            localStorage.setItem("visitas", JSON.stringify(visitas));
+            return visitas.visitas;
+        }
+
+        // Mostrar el valor de las visitas en la página
+        function mostrarVisitas() {
+            var visitas = incrementarVisitas();
+            document.getElementById("visitas").innerHTML = visitas;
+        }
+
+        // Eliminar las visitas del LocalStorage
+        function borrarVisitas() {
+            localStorage.removeItem("visitas");
+            document.getElementById("visitas").innerHTML = 0;
+        }
+    </script>
+</head>
+
+<body onload="mostrarVisitas()">
+
+    <h1>Ejercicio 3</h1>
+
+    <h4>Realiza el ejercicio anterior usando LocalStorage.</h4>
+
+    <p>Has visitado a este pagina <span id="visitas"></span> veces.</p>
+    <button onclick="borrarVisitas()">Borrar Cookie</button </body>
+
+</html>
