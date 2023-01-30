@@ -1,0 +1,115 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+
+    <style>
+        img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h2>Opcion Select </h2>
+        <label for="pokemonSelect">Seleccione el Pokemon:</label>
+        <select id="pokemonSelect">
+            <option value="">Select Pokemon</option>
+        </select>
+        <button id="searchBtn">Buscar</button>
+    </div>
+
+    <div>
+        <h2>Opcion input </h2>
+        <label for="pokemonSelect2">Seleccione el Pokemon:</label>
+        <input type="text" id="pokemonSelect2">
+        <button id="searchBtn2">Buscar</button>
+    </div>
+
+    <div id="imagesContainer"></div>
+
+    <script>
+        //Opcion Select
+        // Cogemos los pokemons de la api para rellenar el select
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=1000")
+            // Luego, tomar la respuesta y transformarla a formato JSON
+            .then(res => res.json())
+            // Accedemos a los datos
+            .then(data => {
+                const pokemonSelect = document.getElementById("pokemonSelect");
+                data.results.forEach(pokemon => {
+                    const option = document.createElement("option");
+                    option.value = pokemon.name;
+                    option.text = pokemon.name;
+                    pokemonSelect.appendChild(option);
+                });
+            });
+
+        // Obetenemos el elemento botón con id "searchBtn"
+        const searchBtn = document.getElementById("searchBtn");
+
+        // Añadir un evento "click" al botón "searchBtn"
+        searchBtn.addEventListener("click", function () {
+            const pokemonName = document.getElementById("pokemonSelect").value;
+            const imagesContainer = document.getElementById("imagesContainer");
+            imagesContainer.innerHTML = "";
+
+            //Obtenemos todas las imagenes de tiene como nombre back en la api de pokeapi
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+                .then(res => res.json())
+                .then(data => {
+                    const sprites = data.sprites;
+                    const mostrarImg = (sprite) => {
+                        if (sprite !== null && typeof sprite === "object") {
+                            Object.keys(sprite).forEach(key => {
+                                mostrarImg(sprite[key]);
+                            });
+                        } else if (sprite !== null && sprite.indexOf("back") === -1) {
+                            const img = document.createElement("img");
+                            img.src = sprite;
+                            imagesContainer.appendChild(img);
+                        }
+                    };
+                    mostrarImg(sprites);
+                });
+        });
+
+
+        //Opcion input
+        // Obetenemos el elemento botón con id "searchBtn"
+        const searchBtn2 = document.getElementById("searchBtn2");
+
+        // Añadir un evento "click" al botón "searchBtn2"
+        searchBtn2.addEventListener("click", function () {
+            const pokemonName2 = document.getElementById("pokemonSelect2").value;
+            const imagesContainer = document.getElementById("imagesContainer");
+            imagesContainer.innerHTML = "";
+
+            //Obtenemos todas las imagenes de tiene como nombre back en la api de pokeapi
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName2}`)
+                .then(res => res.json())
+                .then(data => {
+                    const sprites = data.sprites;
+                    const mostrarImg = (sprite) => {
+                        if (sprite !== null && typeof sprite === "object") {
+                            Object.keys(sprite).forEach(key => {
+                                mostrarImg(sprite[key]);
+                            });
+                        } else if (sprite !== null && sprite.indexOf("back") === -1) {
+                            const img = document.createElement("img");
+                            img.src = sprite;
+                            imagesContainer.appendChild(img);
+                        }
+                    };
+                    mostrarImg(sprites);
+                });
+        });
+    </script>
+</body>
+
+</html>
