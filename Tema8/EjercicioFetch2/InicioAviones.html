@@ -1,0 +1,123 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Ejercicio Aeropuerto</title>
+</head>
+
+<body>
+    <div class="w-75 m-auto py-3">
+        <div>
+            <select id="select-destino" class="form-select">
+                <option value="">Seleccionar destino</option>
+            </select>
+        </div>
+
+        <div class="py-3">
+            <select id="select-hora" class="form-select">
+                <option value="">Vuelos que llegan despues de las: </option>
+            </select>
+        </div>
+
+        <table class="table table-striped table-hover table-bordered text-center">
+            <thead class="table-info">
+                <tr>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>URL</th>
+                    <th>Hora salida</th>
+                    <th>Hora llegada</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-vuelos">
+
+            </tbody>
+        </table>
+        <br>
+
+        <h5>2.4 Se podrian evitar las variables globales? ¿Como?</h3>
+            <p>Si, declararando las variables dentro de la función fetch</p>
+    </div>
+
+    <script>
+        //Hacemos peticion al archivo avion.txt con fetch
+        fetch('Aviones.txt')
+            //Obetenemos la respuesta en json
+            .then(response => response.json())
+            .then(data => {
+                const selectDestino = document.getElementById('select-destino');
+                const selectHora = document.getElementById('select-hora');
+                const tabla = document.getElementById('tabla-vuelos');
+
+                //Para almacenar los destinos y horas de llegada
+                const destinos = [];
+                const horas = [];
+
+                //Recorremos el json
+                data.forEach(vuelo => {
+                    //Extraemos los destinos para mostrar en el select
+                    if (!destinos.includes(vuelo.destino)) {
+                        destinos.push(vuelo.destino);
+                        const opcion = document.createElement('option');
+                        opcion.value = vuelo.destino;
+                        opcion.textContent = vuelo.destino;
+                        selectDestino.appendChild(opcion);
+                    }
+
+                    //Extraemos las horas de llegada para mostrar en el select
+                    if (!horas.includes(vuelo.hora_llegada)) {
+                        horas.push(vuelo.hora_llegada);
+                        const opcion = document.createElement('option');
+                        opcion.value = vuelo.hora_llegada;
+                        opcion.textContent = vuelo.hora_llegada;
+                        selectHora.appendChild(opcion);
+                    }
+
+                    //Rellenamos la tabla con los datos del json
+                    const fila = document.createElement('tr');
+                    fila.innerHTML = `
+                        <td>${vuelo.origen}</td>
+                        <td>${vuelo.destino}</td>
+                        <td>${vuelo.url}</td>
+                        <td>${vuelo.hora_salida}</td>
+                        <td>${vuelo.hora_llegada}</td>
+                    `;
+                    tabla.appendChild(fila);
+                });
+
+                //Funcion para filtrar vuelvo
+                const filtrarVuelos = () => {
+                    //Obtenemos el valor seleccionado
+                    const destinoSeleccionado = selectDestino.value;
+                    const horaSeleccionada = selectHora.value;
+                    //Obtenemos todas las filas de la tabla 
+                    const filas = tabla.querySelectorAll('tr');
+                    //Recorremos la tabla para la comparacion
+                    filas.forEach(fila => {
+                        //Obtenemos el dato de la tabla y hacemos la comparacion
+                        //Se mostrará la fila si es true.
+                        const destino = fila.children[1].textContent;
+                        const horaLlegada = fila.children[4].textContent;
+                        if (
+                            (destino === destinoSeleccionado || destinoSeleccionado === '') &&
+                            (horaLlegada >= horaSeleccionada || horaSeleccionada === '')
+                        ) {
+                            fila.style.display = 'table-row';
+                        } else {
+                            fila.style.display = 'none';
+                        }
+                    });
+                };
+                //Añadimos manejador de eventos a los menús desplegables
+                selectDestino.addEventListener('change', filtrarVuelos);
+                selectHora.addEventListener('change', filtrarVuelos);
+            });
+    </script>
+
+</body>
+
+</html>
