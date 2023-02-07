@@ -1,0 +1,63 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio Fetch3</title>
+  </head>
+  <body>
+    <form id="formulario">
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" name="titulo" value="Listado de números" />
+
+      <br /><br />
+
+      <label for="numeros">Números:</label>
+      <input type="text" id="numeros" name="numeros" value="2, 4, 6, 8, 10" />
+
+      <br /><br />
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("formulario")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          var titulo = document.getElementById("titulo").value;
+          var numeros = document.getElementById("numeros").value.split(", ");
+
+          var datos = {
+            titulo: titulo,
+            numeros: numeros,
+          };
+
+          var init = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(datos),
+          };
+
+          try {
+            var response = await fetch("media.php", init);
+            if (response.ok) {
+              var respuesta = await response.json();
+
+              alert("La media es: " + respuesta.media + " | El máximo es: " + respuesta.max + " | El mínimo es: " + respuesta.min);
+
+              document.write(respuesta.html);
+              document.close();
+            } else {
+              throw new Error(response.statusText);
+            }
+          } catch (err) {
+            console.log("Error al realizar la petición AJAX: " + err.message);
+          }
+        });
+    </script>
+  </body>
+</html>
