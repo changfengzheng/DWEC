@@ -1,0 +1,119 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>EJERCICIO 1 LISTADO CURSOS</title>
+</head>
+
+<body>
+    <div class="ciclo">
+        <h1>Ciclo de DAW</h1>
+        <p>Pulse la tecla "enter" para mostrar/ocultar los modulos o manten el raton encima del titulo de Curso</p>
+        <h3 class="primer-curso-titulo">1ª DAW</h3>
+        <ul class="primer-curso">
+            <li>Bases de Datos</li>
+            <li>Entornos de desarrollo</li>
+            <li>Formación y orientación laboral</li>
+            <li>Lenguajes de marcas y sistemas de gestión de información </li>
+            <li>Programación </li>
+            <li>Sistemas informáticos </li>
+        </ul>
+        <h3 class="segundo-curso-titulo">2ª DAW</h3>
+        <ul class="segundo-curso">
+            <li data-horas="6" data-modalidad="presencial">Desarrollo web en entorno cliente</li>
+            <li data-horas="8" data-modalidad="presencial">Desarrollo web en entorno servidor</li>
+            <li data-horas="3" data-modalidad="presencial">Despliegue de aplicaciones web</li>
+            <li data-horas="6" data-modalidad="presencial">Diseño de interfaces WEB</li>
+            <li data-horas="4" data-modalidad="presencial">Empresa e iniciativa emprendedora</li>
+            <li data-horas="0" data-modalidad="presencial">Formación en centros de trabajo</li>
+            <li data-horas="3" data-modalidad="presencial">Horas de libre configuración</li>
+            <li data-horas="0" data-modalidad="presencial">Proyecto de desarrollo de aplicaciones web</li>
+        </ul>
+
+    </div>
+
+    <script>
+        // 1. Muestra en un alert la cantidad de cursos por los que está compuesto el ciclo de DAW.
+        var numCursos = $('.ciclo ul').length;
+        alert('El ciclo de 2 DAW está compuesto por ' + numCursos + ' cursos.');
+
+        // 2. Muestra las listas al pasar por encima el ratón de Primero o Segundo y ocultar al retirarlo. 
+        // Utiliza el método hover. Tardará en aparecer y desparecer la información 2 segundos.
+        $('.primer-curso-titulo').hover(function () {
+            $('.primer-curso').delay(2000).slideDown();
+        }, function () {
+            $('.primer-curso').slideUp();
+        });
+
+        $('.segundo-curso-titulo').hover(function () {
+            $('.segundo-curso').delay(2000).slideDown();
+        }, function () {
+            $('.segundo-curso').slideUp();
+        });
+
+        // 3. Despliega el contenido de las listas al pulsar la tecla y volver a plegar al pulsar Utilizar el método on. Se realizará de forma rápida.
+        // $('.primer-curso, .segundo-curso').hide();
+        // $(document).on('keydown', function (e) {
+        //     if (e.which === 13) {
+        //         $('.primer-curso, .segundo-curso').slideToggle();
+        //     }
+        // });
+
+        // 4. Modifica el comportamiento anterior para poderlo hacer con una sola tecla.
+        var toggleList = true;
+        $(document).on('keydown', function (e) {
+            if (e.which === 13) {
+                if (toggleList) {
+                    $('.primer-curso, .segundo-curso').slideDown();
+                    toggleList = false;
+                } else {
+                    $('.primer-curso, .segundo-curso').slideUp();
+                    toggleList = true;
+                }
+            }
+        });
+
+        // 5. Elimina el efecto del punto 3.
+
+
+        // 6. Vuelve a repetir el comportamiento del punto 4 pero ahora solo se producirá la primera vez que se pulse la tecla.
+        // var firstKeypress = true;
+        // $(document).on('keydown', function (e) {
+        //     if (e.which === 13 && firstKeypress) {
+        //         $('.primer-curso, .segundo-curso').slideDown();
+        //         firstKeypress = false;
+        //     }
+        // });
+
+        // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. 
+        // Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
+        // $('.segundo-curso li').hover(function () {
+        //     var horas = $(this).data('horas');
+        //     $(this).append('<span class="horas">' + horas + ' horas semanales</span>');
+        // }, function () {
+        //     $(this).find('.horas').remove();
+        // });
+
+
+        // 8. Ahora aparecerá el número de horas cuando el usuario haga clic sobre el nombre del módulo. 
+        // Realiza una delegación de eventos utilizando on.
+        // $('.segundo-curso').on('click', 'li', function () {
+        //     var horas = $(this).data('horas');
+        //     $(this).append('<span class="horas">' + horas + ' horas semanales</span>');
+        // });
+
+        // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). 
+        // Esta información será pasada a la función que trata el evento a través del método on.
+        $('.segundo-curso').on('click', 'li', function (e) {
+            var horas = $(this).data('horas');
+            var modalidad = $(this).data('modalidad');
+            $(this).append('<span class="horas">' + horas + ' horas semanales, ' + modalidad + '</span>');
+            e.stopPropagation();
+        });
+    </script>
+</body>
+
+</html>
