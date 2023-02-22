@@ -1,0 +1,122 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <title>Ejercicio Aeropuerto</title>
+</head>
+
+<body>
+    <div class="w-75 m-auto py-3">
+        <div>
+            <select id="select-destino" class="form-select">
+                <option value="">Seleccionar destino</option>
+            </select>
+        </div>
+
+        <div class="py-3">
+            <select id="select-hora" class="form-select">
+                <option value="">Vuelos que llegan despues de las: </option>
+            </select>
+        </div>
+
+        <table class="table table-striped table-hover table-bordered text-center">
+            <thead class="table-info">
+                <tr>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>URL</th>
+                    <th>Hora salida</th>
+                    <th>Hora llegada</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-vuelos">
+
+            </tbody>
+        </table>
+        <br>
+
+        <h5>2.4 Se podrian evitar las variables globales? ¿Como?</h3>
+            <p>Si, declararando las variables dentro de la función fetch</p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            //Hacemos peticion al archivo avion.txt con AJAX
+            $.ajax({
+                url: 'Aviones.txt',
+                dataType: 'json'
+            }).done(function (data) {
+                const selectDestino = $('#select-destino');
+                const selectHora = $('#select-hora');
+                const tabla = $('#tabla-vuelos');
+
+                //Para almacenar los destinos y horas de llegada
+                const destinos = [];
+                const horas = [];
+
+                //Recorremos el json
+                $.each(data, function (index, vuelo) {
+                    //Extraemos los destinos para mostrar en el select
+                    if (!destinos.includes(vuelo.destino)) {
+                        destinos.push(vuelo.destino);
+                        const opcion = $('<option>').val(vuelo.destino).text(vuelo.destino);
+                        selectDestino.append(opcion);
+                    }
+
+                    //Extraemos las horas de llegada para mostrar en el select
+                    if (!horas.includes(vuelo.hora_llegada)) {
+                        horas.push(vuelo.hora_llegada);
+                        const opcion = $('<option>').val(vuelo.hora_llegada).text(vuelo.hora_llegada);
+                        selectHora.append(opcion);
+                    }
+
+                    //Rellenamos la tabla con los datos del json
+                    const fila = $('<tr>');
+                    fila.html(`
+                <td>${vuelo.origen}</td>
+                <td>${vuelo.destino}</td>
+                <td>${vuelo.url}</td>
+                <td>${vuelo.hora_salida}</td>
+                <td>${vuelo.hora_llegada}</td>
+            `);
+                    tabla.append(fila);
+                });
+
+                //Funcion para filtrar vuelvo
+                const filtrarVuelos = () => {
+                    //Obtenemos el valor seleccionado
+                    const destinoSeleccionado = selectDestino.val();
+                    const horaSeleccionada = selectHora.val();
+                    //Obtenemos todas las filas de la tabla 
+                    const filas = tabla.find('tr');
+                    //Recorremos la tabla para la comparacion
+                    filas.each(function () {
+                        //Obtenemos el dato de la tabla y hacemos la comparacion
+                        //Se mostrará la fila si es true.
+                        const destino = $(this).children().eq(1).text();
+                        const horaLlegada = $(this).children().eq(4).text();
+                        if (
+                            (destino === destinoSeleccionado || destinoSeleccionado === '') &&
+                            (horaLlegada >= horaSeleccionada || horaSeleccionada === '')
+                        ) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                };
+                //Añadimos manejador de eventos a los menús desplegables
+                selectDestino.on('change', filtrarVuelos);
+                selectHora.on('change', filtrarVuelos);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
